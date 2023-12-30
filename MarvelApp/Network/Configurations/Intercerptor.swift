@@ -1,7 +1,7 @@
 //
 //  Intercerptors.swift
 //
-//  Created by KArim on 02/03/1444 AH.
+//  Created by Karim on 02/03/1444 AH.
 //
 
 import Alamofire

@@ -9,41 +9,45 @@ import UIKit
 import RxSwift
 
 class CategoryCell: UITableViewCell {
-
     var categorList:[CategoryItem]?
-    var disposeBag = DisposeBag()
-    let viewModel = DetailsCharacterViewModel()
+    var comics:[ComicsEnum.Result]?
+    var disposeBag : DisposeBag?
+     var viewModel:DetailsCharacterViewModel!
     @IBOutlet weak var collectionView: UICollectionView!
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCollection()
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.subscribeToResponse()
+//        }
         // Initialization code
-        
     }
+    override func prepareForReuse() {
+            super.prepareForReuse()
+            disposeBag = DisposeBag()
+        }
     private func setupCollection() {
         collectionView.register(UINib(nibName: "CategoryCollectionCell", bundle: nil), forCellWithReuseIdentifier: "CategoryCollectionCell")
-        collectionView.dataSource = self
-        collectionView.delegate = self
+//        collectionView.dataSource = self
+//        collectionView.delegate = self
     }
-    
+    func subscribeToResponse() {
+        viewModel?.comicsObservable.bind(to: collectionView.rx.items(cellIdentifier: "CategoryCollectionCell", cellType: CategoryCollectionCell.self)) {index,comic,cell in
+            print(comic.thumbnail)
+        }.disposed(by: disposeBag!)
+    }
 }
 
 extension CategoryCell:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(categorList?.count)
-        return categorList?.count ?? 0
+        return comics?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCollectionCell", for: indexPath) as! CategoryCollectionCell
-        let imageUrl = categorList?[indexPath.item].resourceURI ?? ""
-        let stringUrl = imageUrl + "/landscape_amazing.jpg"
-        let url = URL(string: stringUrl)
-        print(url)
-        cell.categoryImage.af.setImage(withURL: url ?? URL(filePath: ""))
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.size.width
         let height = collectionView.frame.size.height

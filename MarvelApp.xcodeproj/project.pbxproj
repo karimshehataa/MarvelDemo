@@ -29,6 +29,7 @@
 		0497ECE62B3CBD9100E13133 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0497ECE42B3CBD9100E13133 /* CategoryCell.xib */; };
 		0497ECEA2B3CBDEE00E13133 /* CategoryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0497ECE82B3CBDEE00E13133 /* CategoryCollectionCell.swift */; };
 		0497ECEB2B3CBDEE00E13133 /* CategoryCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0497ECE92B3CBDEE00E13133 /* CategoryCollectionCell.xib */; };
+		04B15E2A2B3E06DE0069D295 /* ComicsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B15E292B3E06DE0069D295 /* ComicsModel.swift */; };
 		04C7A9692B3812E200689E0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C7A9682B3812E200689E0B /* AppDelegate.swift */; };
 		04C7A96B2B3812E200689E0B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C7A96A2B3812E200689E0B /* SceneDelegate.swift */; };
 		04C7A9722B3812E400689E0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04C7A9712B3812E400689E0B /* Assets.xcassets */; };
@@ -87,6 +88,7 @@
 		0497ECE42B3CBD9100E13133 /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
 		0497ECE82B3CBDEE00E13133 /* CategoryCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionCell.swift; sourceTree = "<group>"; };
 		0497ECE92B3CBDEE00E13133 /* CategoryCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCollectionCell.xib; sourceTree = "<group>"; };
+		04B15E292B3E06DE0069D295 /* ComicsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsModel.swift; sourceTree = "<group>"; };
 		04C7A9652B3812E200689E0B /* MarvelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarvelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C7A9682B3812E200689E0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04C7A96A2B3812E200689E0B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +148,11 @@
 		0497EC982B381F4100E13133 /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
+				04E44CF72B381D9E004D91BD /* API-Result.swift */,
+				04E44CF82B381D9E004D91BD /* Intercerptor.swift */,
+				04E44CF92B381D9E004D91BD /* EndPoint.swift */,
+				04E44CF42B381D9E004D91BD /* API - Errors.swift */,
+				04E44CF52B381D9E004D91BD /* NetworkManager + DefaultData.swift */,
 				0497EC992B381F4100E13133 /* Constants */,
 				0497EC9D2B381F4100E13133 /* URLs */,
 			);
@@ -217,6 +224,7 @@
 				0497ECD72B3BEE5C00E13133 /* DetailsCharacterVC.swift */,
 				0497ECD82B3BEE5C00E13133 /* DetailsCharacterVC.xib */,
 				0497ECDB2B3C009700E13133 /* DetailsCharacterViewModel.swift */,
+				04B15E292B3E06DE0069D295 /* ComicsModel.swift */,
 			);
 			path = DetailsCharacter;
 			sourceTree = "<group>";
@@ -316,12 +324,7 @@
 			children = (
 				0497ECA32B381FF500E13133 /* Extenstions */,
 				0497EC982B381F4100E13133 /* Configurations */,
-				04E44CF42B381D9E004D91BD /* API - Errors.swift */,
-				04E44CF52B381D9E004D91BD /* NetworkManager + DefaultData.swift */,
 				04E44CF62B381D9E004D91BD /* NetworkManager.swift */,
-				04E44CF72B381D9E004D91BD /* API-Result.swift */,
-				04E44CF82B381D9E004D91BD /* Intercerptor.swift */,
-				04E44CF92B381D9E004D91BD /* EndPoint.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -597,6 +600,7 @@
 				0497ECE52B3CBD9100E13133 /* CategoryCell.swift in Sources */,
 				0497ECCA2B38EF6E00E13133 /* CharcatersViewModel.swift in Sources */,
 				04E44CFC2B381D9E004D91BD /* NetworkManager.swift in Sources */,
+				04B15E2A2B3E06DE0069D295 /* ComicsModel.swift in Sources */,
 				0497ECE02B3C097D00E13133 /* HeaderImageCell.swift in Sources */,
 				0497ECA22B381F4100E13133 /* URls.swift in Sources */,
 				0497ECD92B3BEE5C00E13133 /* DetailsCharacterVC.swift in Sources */,

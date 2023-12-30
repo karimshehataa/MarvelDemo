@@ -52,11 +52,11 @@ class CharactersVC: UIViewController, UICollectionViewDelegateFlowLayout {
     }
     
     func subscribeToCharacterSelected() {
-        Observable.zip(collectionView.rx.itemSelected, collectionView.rx.modelSelected(Result.self)).bind { index,character in
-            let vc = DetailsCharacterVC()
+        Observable.zip(collectionView.rx.itemSelected, collectionView.rx.modelSelected(Result.self)).bind {[weak self] index,character in
+            guard let self = self else {return}
             let viewModel = DetailsCharacterViewModel()
-            vc.viewModel = viewModel
-            viewModel.characterSubject.onNext(character.comics?.items ?? [])
+            let vc = DetailsCharacterVC(viewModel: viewModel)
+//            viewModel.characterSubject.onNext(character.comics?.items ?? [])
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                 viewModel.character?(character)
             }

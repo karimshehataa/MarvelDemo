@@ -13,14 +13,21 @@ import AlamofireImage
 class DetailsCharacterVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var character:Result?
     var disposed = DisposeBag()
-    var viewModel = DetailsCharacterViewModel()
+    var viewModel :DetailsCharacterViewModel
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setupTableView()
     }
+    init(viewModel: DetailsCharacterViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     private func setupTableView() {
         self.tableView.contentInset = UIEdgeInsets(top: -55, left: 0, bottom: 0, right: 0)
         tableView.register(UINib(nibName: "HeaderImageCell", bundle: nil), forCellReuseIdentifier: "HeaderImageCell")
@@ -28,13 +35,16 @@ class DetailsCharacterVC: UIViewController, UITableViewDelegate, UITableViewData
         viewModel.character = { [weak self] (charater) in
             guard let self = self else {return}
             print(charater)
-            
             self.character = charater
             self.tableView.delegate = self
             self.tableView.dataSource = self
-            
-        }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                self.viewModel.fetchData(characterId: self.character?.id ?? 0)
+    
+            }
+            }
     }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 5
     }
@@ -54,12 +64,16 @@ class DetailsCharacterVC: UIViewController, UITableViewDelegate, UITableViewData
             print(stringUrl)
             cell.characterImage.af.setImage(withURL: url ?? URL(fileURLWithPath: ""))
             return cell
-        } else  {
+        }
+        else {
+            print("qwe")
             let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! CategoryCell
-            cell.categorList = character?.comics?.items
+            print("qwe1")
+            cell.viewModel = self.viewModel
+            cell.disposeBag = disposed
+            print("qwe2")
             return cell
         }
-       
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -70,5 +84,4 @@ class DetailsCharacterVC: UIViewController, UITableViewDelegate, UITableViewData
             return 200
         }
     }
-    
 }

@@ -9,4 +9,5 @@ import Foundation
 
 enum URLEndpoints {
     static let getCharacters = "characters"
+    static let getComics = "/comics"
 }
